@@ -17,15 +17,17 @@
             <tr>
                 <th>№</th><th>Продукт</th><th>Цена</th><th>-</th><th>+</th>
             </tr>
-            <?php foreach($position as $row): ?>
+            <?php foreach($position_catalogue as $row): ?>
                 <tr>
-                    <th name=<?=$row["id"]?>><?=$row["id"]?></th>
+                    <th name=<?="_".$row["id"]?>><?=$row["id"]?></th>
 
                     <th><?=$row["product"]?></th>
 
-                    <th name=<?=$row["price"]?>><?=$row["price"]?></th>
+                    <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>
 
-                    <th><input type="button" value="-"></th><th><input type="button" value="+"></th>
+                    <th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, '-');" value="-"></th><th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, '+');" value="+"></th>
+
+                    <th id=<?=$row["id"]?>></th>
                 </tr>
             <?php endforeach ?>
         </table>
@@ -34,6 +36,7 @@
     <!--банер корзины-->
     <div><!--outpute-->
         <a href="./pages/shopping_basket.php">Корзина</a>
+        <!--сумма-->
     <div>
     
 </body>

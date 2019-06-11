@@ -4,19 +4,17 @@
 
     $link = db_connect();
 
-    $position = position_generator($link);
+    $position_catalogue = position_generator($link, "product_catalog"); 
+
+    $position_basket = position_generator($link, "users_basket");
     
-    #подключение базы данных
+    #переименование таблицы корзины БД при заказе
 
-    #формирование массива выводимых позиций
+    #отправка email владельцу магазина     
 
-    #обновление 4 столбца главной таблицы БД кол-во в карзине при перезагрузке
-
-    #обновление 4 столбца главной таблицы БД кол-во в карзине при заказе
-
-    #отправка email владельцу магазина 
-
-    #создание таблицы БД с оформленым заказом	
-
-	include("pages/catalogue.php");
+    include("pages/catalogue.php");
+    
+    if($_GET["changing_user_basket"]){
+        add_position_basket($link, $_GET["changing_user_basket"]);
+    }
 ?>

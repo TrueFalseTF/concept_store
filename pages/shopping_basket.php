@@ -7,10 +7,25 @@
     <link rel="stylesheet" href="./css/shopping_basket_styles.css">
     <script src="./pages/js/jsshopping_basket.js"></script>
 </head>
-<body>
-    <?php
-        echo("shopping_basket");
-    ?>
-    
+<body>    
+    <table class="product_table">
+        <caption>Корзина</caption>
+        <tr>
+            <th>№</th><th>Продукт</th><th>Цена</th><th>-</th><th>+</th>
+        </tr>
+        <?php foreach($position_basket as $row): ?>
+            <tr>
+                <th name=<?="_".$row["id"]?>><?=$row["id"]?></th>
+
+                <th><?=$row["product"]?></th>
+
+                <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>
+
+                <th><input type="button" value="-"></th><th><input type="button" value="+"></th>
+
+                <th id=<?=$row["id"]?>></th>
+            </tr>
+        <?php endforeach ?>
+    </table>   
 </body>
 </html>
