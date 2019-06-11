@@ -1,7 +1,14 @@
 <?php	
     require_once("function.php");
+    require_once("database.php");
+
+    $link = db_connect();
+
+    $position = position_generator($link);
     
     #подключение базы данных
+
+    #формирование массива выводимых позиций
 
     #обновление 4 столбца главной таблицы БД кол-во в карзине при перезагрузке
 

@@ -8,16 +8,33 @@
     <script src="./pages/js/catalogue.js"></script>
     <script src="./pages/js/shopping_basket.js"></script>
 </head>
-<body>
-    <h2>Каталог магазина</h2>
-    <!--product table-->
-    <div class="product table">
-        <!--таблица-->
-        <em></em><p></p><p></p>
-    </div>    
+<body>    
+    <!--product table-->    
+    <!--таблица-->
+    <form action="">
+        <table class="product_table">
+            <caption>Каталог магазина</caption>
+            <tr>
+                <th>№</th><th>Продукт</th><th>Цена</th><th>-</th><th>+</th>
+            </tr>
+            <?php foreach($position as $row): ?>
+                <tr>
+                    <th name=<?=$row["id"]?>><?=$row["id"]?></th>
+
+                    <th><?=$row["product"]?></th>
+
+                    <th name=<?=$row["price"]?>><?=$row["price"]?></th>
+
+                    <th><input type="button" value="-"></th><th><input type="button" value="+"></th>
+                </tr>
+            <?php endforeach ?>
+        </table>
+    </form>    
 
     <!--банер корзины-->
-    <a href="./pages/shopping_basket.php">Корзина</a>
+    <div><!--outpute-->
+        <a href="./pages/shopping_basket.php">Корзина</a>
+    <div>
     
 </body>
 </html>
