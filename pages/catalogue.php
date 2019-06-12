@@ -23,7 +23,7 @@
 
                     <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>
 
-                    <th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, '-');" value="-"></th><th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, '+');" value="+"></th>
+                    <th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'subtract');" value="-"></th><th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'add');" value="+"></th>
 
                     <th id=<?=$row["id"]?>></th>
                 </tr>

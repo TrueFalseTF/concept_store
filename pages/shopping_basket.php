@@ -27,5 +27,5 @@
         <?php endforeach ?>
     </table>   
 </body>
-<script src="./pages/js/jsshopping_basket.js"></script>
+<script src="./pages/js/shopping_basket.js"></script>
 </html>

@@ -19,24 +19,50 @@
         return $position;
     }
 
-    function add_position_basket($link, $added_position_id, $added_position_sign) {
+    function changing_position_basket($link, $changing_position_id, $changing_position_sign) {
 
-        if($added_position_sign === "+") {
+        if($changing_position_sign === "add") {
+            
+            $result_add = mysqli_query($link, 
+                "SELECT * FROM product_catalog WHERE id=".$changing_position_id);    
+            if (!$result_add)
+                die(mysqli_error($link));
 
-            $query = "SELECT * FROM product_catalog WHERE id=".$added_position_id;
-            $result_add = mysqli_query($link, $query);
+            $result_added = mysqli_query($link, 
+                "SELECT * FROM users_basket WHERE id=".$changing_position_id);    
+            if (!$result_added)
+                die(mysqli_error($link));              
+                
+            
+            $row_catalog = mysqli_fetch_assoc($result_add);
+            $row_basket = mysqli_fetch_assoc($result_added); 
+                
+            if (NULL !== $row_basket) {
+                $result_added = mysqli_query($link, 
+                    "DELETE FROM users_basket WHERE id=".$changing_position_id);    
+                if (!$result_added)
+                    die(mysqli_error($link));
+            }
+
+            
+            $row_id = '"'.$row_catalog['id'].'"';
+            $row_product = '"'.$row_catalog['product'].'"';
+            $row_price = '"'.$row_catalog['price'].'"';
+            $row_amount_product = 1;
+            if(isset($row_basket['amount_product'])){
+                $row_amount_product = $row_basket['amount_product'] + 1;
+            }
+                              
     
-            if (!$result)
-                die(mysqli_error($link));    
-            
-            $position =  array();            
-            
-            $row = mysqli_fetch_assoc($result_add);
-            $position_add[] = $row;            
+            $query = "INSERT INTO `users_basket` (`id`, `product`, `price`, `amount_product`) VALUES ("
+            .$row_id.", "
+            .$row_product.", "
+            .$row_price.", "
+            .$row_amount_product.")" 
+            ;
 
-            $query = "INSERT INTO users_basket (id, product, price, amount_product) VALUES (".$position_add['id'].", ".$position_add['product'].", ".$position_add['price'].", ".$position_add['amount_product'].")" ;
-        /*} else if ($added_position.sign === "-") {
-            $query = "удалить из users_basket $added_position";*/
+        /*} else if ($changing_position.sign === "-") {
+            $query = "удалить из users_basket $changing_position";*/
         };        
 
         $result = mysqli_query($link, $query);
@@ -44,4 +70,5 @@
         if (!$result)
             die(mysqli_error($link));
     };
+
 ?>

@@ -21,7 +21,7 @@
     } else {        
         if(isset($_GET["changing_user_basket"])){
             header(200);
-            add_position_basket($link, $_GET["id"], $_GET["sign"]);
+            changing_position_basket($link, $_GET["id"], $_GET["sign"]);
         };
         include("pages/catalogue.php");
     }    
