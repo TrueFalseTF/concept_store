@@ -9,27 +9,35 @@
 <body>    
     <!--product table-->    
     <!--таблица-->
-    <form action="">
-        <table class="product_table">
-            <caption>Каталог магазина</caption>
+    
+    <table class="product_table">
+        <caption>Каталог магазина</caption>
+        <tr>
+            <th>№</th><th>Продукт</th><th>Цена</th><th>-</th><th>+</th>
+        </tr>
+        <?php foreach($position_catalogue as $row): ?>
             <tr>
-                <th>№</th><th>Продукт</th><th>Цена</th><th>-</th><th>+</th>
+                <th><?=$row["id"]?></th>
+
+                <th><?=$row["product"]?></th>
+
+                <th><?=$row["price"]?></th>
+                
+                <th>
+                    <input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'subtract'); 
+                    CLIENT_changing_user_basket(<?=$row['id']?>, 'subtract');" value="-">
+                </th>
+
+                <th>
+                    <input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'add'); 
+                    CLIENT_changing_user_basket(<?=$row['id']?>, 'add');" value="+">
+                </th>                
+
+                <th id="<?=$row['id']?>"><?=$row["amount_product"]?></th>
             </tr>
-            <?php foreach($position_catalogue as $row): ?>
-                <tr>
-                    <th name=<?="_".$row["id"]?>><?=$row["id"]?></th>
-
-                    <th><?=$row["product"]?></th>
-
-                    <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>
-
-                    <th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'subtract');" value="-"></th><th><input type="button" onclick="changing_user_basket(<?=$row['id']?>, 'add');" value="+"></th>
-
-                    <th id=<?=$row["id"]?>></th>
-                </tr>
-            <?php endforeach ?>
-        </table>
-    </form>    
+        <?php endforeach ?>
+    </table>
+        
 
     <!--банер корзины-->
     <div><!--outpute-->

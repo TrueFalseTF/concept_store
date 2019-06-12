@@ -1,6 +1,19 @@
 //механика корзины на сотроне клиента
 
-shopping_basket = {};
+
+
+function CLIENT_changing_user_basket(id, sign) {
+    if(sign === "add") {        
+        document.getElementById(id).innerHTML = 
+            Number.parseInt(document.getElementById(id).innerHTML) + 1;
+    } else if (sign === "subtract" && document.getElementById(id).innerHTML != 0) {
+        document.getElementById(id).innerHTML = 
+            Number.parseInt(document.getElementById(id).innerHTML) - 1;        
+    }
+    
+} 
+
+
 
 //чтение имеющихся в корзине из БД
 

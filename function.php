@@ -41,7 +41,7 @@
                 $result_added = mysqli_query($link, 
                     "DELETE FROM users_basket WHERE id=".$changing_position_id);    
                 if (!$result_added)
-                    die(mysqli_error($link));
+                    die(mysqli_error($link));              
             }
 
 
@@ -60,6 +60,24 @@
             .$row_price.", "
             .$row_amount_product.")" 
             ;
+            $result = mysqli_query($link, $query);
+            if (!$result)
+                die(mysqli_error($link));
+
+            $result_added = mysqli_query($link, 
+                "DELETE FROM product_catalog WHERE id=".$changing_position_id);    
+            if (!$result_added)
+                die(mysqli_error($link));  
+
+            $query = "INSERT INTO `product_catalog` (`id`, `product`, `price`, `amount_product`) VALUES ("
+            .$row_id.", "
+            .$row_product.", "
+            .$row_price.", "
+            .$row_amount_product.")" 
+            ;
+            $result = mysqli_query($link, $query);
+            if (!$result)
+                die(mysqli_error($link));           
 
         } else if($changing_position_sign === "subtract") {
             
@@ -83,6 +101,8 @@
                 if (!$result_added)
                     die(mysqli_error($link));
 
+
+
                 $row_id = '"'.$row_catalog['id'].'"';
                 $row_product = '"'.$row_catalog['product'].'"';
                 $row_price = '"'.$row_catalog['price'].'"';
@@ -93,15 +113,35 @@
                     .$row_product.", "
                     .$row_price.", "
                     .$row_amount_product.")" 
-                    ;                    
+                    ;
+                    
+                    $result = mysqli_query($link, $query);
+
+                    if (!$result)
+                        die(mysqli_error($link));
                 }
+                if($row_amount_product >= 0){
+
+                    $result_added = mysqli_query($link, 
+                        "DELETE FROM product_catalog WHERE id=".$changing_position_id);    
+                    if (!$result_added)
+                        die(mysqli_error($link));
+
+                    $query = "INSERT INTO `product_catalog` (`id`, `product`, `price`, `amount_product`) VALUES ("
+                    .$row_id.", "
+                    .$row_product.", "
+                    .$row_price.", "
+                    .$row_amount_product.")" 
+                    ;
+                        
+                    $result = mysqli_query($link, $query);
+    
+                    if (!$result)
+                        die(mysqli_error($link));
+                }
+
             }
         }        
-
-        if(isset($query))
-            $result = mysqli_query($link, $query);
-
-        if (!$result)
-            die(mysqli_error($link));
+        
     };
 ?>

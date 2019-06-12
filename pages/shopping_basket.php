@@ -14,13 +14,13 @@
         </tr>
         <?php foreach($position_basket as $row): ?>
             <tr>
-                <th name=<?="_".$row["id"]?>><?=$row["id"]?></th>
+                <th><?=$row["id"]?></th>
 
                 <th><?=$row["product"]?></th>
 
-                <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>                
+                <th><?=$row["price"]?></th>                
 
-                <th id=<?=$row["id"]?>></th>
+                <th id="<?=$row['id']?>"><?=$row["amount_product"]?></th>
             </tr>
         <?php endforeach ?>
     </table>   
