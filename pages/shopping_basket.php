@@ -18,9 +18,7 @@
 
                 <th><?=$row["product"]?></th>
 
-                <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>
-
-                <th><input type="button" value="-"></th><th><input type="button" value="+"></th>
+                <th name=<?="_".$row["price"]?>><?=$row["price"]?></th>                
 
                 <th id=<?=$row["id"]?>></th>
             </tr>

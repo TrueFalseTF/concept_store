@@ -44,7 +44,7 @@
                     die(mysqli_error($link));
             }
 
-            
+
             $row_id = '"'.$row_catalog['id'].'"';
             $row_product = '"'.$row_catalog['product'].'"';
             $row_price = '"'.$row_catalog['price'].'"';
@@ -61,14 +61,47 @@
             .$row_amount_product.")" 
             ;
 
-        /*} else if ($changing_position.sign === "-") {
-            $query = "удалить из users_basket $changing_position";*/
-        };        
+        } else if($changing_position_sign === "subtract") {
+            
+            $result_subtract = mysqli_query($link, 
+                "SELECT * FROM product_catalog WHERE id=".$changing_position_id);    
+            if (!$result_subtract)
+                die(mysqli_error($link));
 
-        $result = mysqli_query($link, $query);
+            $result_added = mysqli_query($link, 
+                "SELECT * FROM users_basket WHERE id=".$changing_position_id);    
+            if (!$result_added)
+                die(mysqli_error($link));              
+                
+            
+            $row_catalog = mysqli_fetch_assoc($result_subtract);
+            $row_basket = mysqli_fetch_assoc($result_added); 
+                
+            if (NULL !== $row_basket) {
+                $result_added = mysqli_query($link, 
+                    "DELETE FROM users_basket WHERE id=".$changing_position_id);    
+                if (!$result_added)
+                    die(mysqli_error($link));
+
+                $row_id = '"'.$row_catalog['id'].'"';
+                $row_product = '"'.$row_catalog['product'].'"';
+                $row_price = '"'.$row_catalog['price'].'"';
+                $row_amount_product = $row_basket['amount_product'] - 1;
+                if($row_amount_product > 0){
+                    $query = "INSERT INTO `users_basket` (`id`, `product`, `price`, `amount_product`) VALUES ("
+                    .$row_id.", "
+                    .$row_product.", "
+                    .$row_price.", "
+                    .$row_amount_product.")" 
+                    ;                    
+                }
+            }
+        }        
+
+        if(isset($query))
+            $result = mysqli_query($link, $query);
 
         if (!$result)
             die(mysqli_error($link));
     };
-
 ?>
