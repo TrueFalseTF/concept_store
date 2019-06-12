@@ -15,8 +15,20 @@
     #переименование таблицы корзины БД при заказе создание новой пользовательской;
 
     #отправка email владельцу магазина 
+    if(isset($_GET["clean_basket"])){
+        header(200);
+        clean_user_basket($link);
+    }
+
+    if(isset($_GET["sending_emeil"])){
+        header(200);
+        meil("dimon_mcensk@mail.ru", "Форма заказа из магазина", $position_basket);
+        order_sorting($link);
+    }
+    
 
     if(isset($_GET["open_basket"])) {
+
         include("pages/shopping_basket.php");                
     } else {        
         if(isset($_GET["changing_user_basket"])){

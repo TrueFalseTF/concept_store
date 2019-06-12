@@ -144,4 +144,40 @@
         }        
         
     };
+
+    function clean_user_basket($link) {
+        $result_clean_basket = mysqli_query($link, 
+            "DELETE FROM users_basket");    
+        if (!$result_clean_basket)
+            die(mysqli_error($link));
+
+        $old_position_product_catalog = position_generator($link, "product_catalog");
+
+        $result_clean_catalog = mysqli_query($link, 
+            "DELETE FROM product_catalog");    
+        if (!$result_clean_catalog)
+            die(mysqli_error($link));
+            
+        foreach($old_position_product_catalog as $row) {
+
+            $row_id = '"'.$row['id'].'"';
+            $row_product = '"'.$row['product'].'"';
+            $row_price = '"'.$row['price'].'"';
+            $row_amount_product = "0";
+
+            $result_update_catalog = mysqli_query($link, 
+                "INSERT INTO `product_catalog` (`id`, `product`, `price`, `amount_product`) VALUES ("
+                .$row_id.", "
+                .$row_product.", "
+                .$row_price.", "
+                .$row_amount_product.")");    
+            if (!$result_update_catalog)
+                die(mysqli_error($link));
+
+        }
+    };
+
+    function order_sorting($link) {
+        
+    }
 ?>
