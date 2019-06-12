@@ -8,13 +8,21 @@
 
     $position_basket = position_generator($link, "users_basket");
     
-    #переименование таблицы корзины БД при заказе
+    #обновление 4 столбца главной таблицы БД кол-во в карзине при перезагрузке
 
-    #отправка email владельцу магазина     
+    #обновление 4 столбца главной таблицы БД кол-во в карзине при заказе
 
-    include("pages/catalogue.php");
-    
-    if($_GET["changing_user_basket"]){
-        add_position_basket($link, $_GET["changing_user_basket"]);
-    }
+    #переименование таблицы корзины БД при заказе создание новой пользовательской;
+
+    #отправка email владельцу магазина 
+
+    if(isset($_GET["open_basket"])) {
+        include("pages/shopping_basket.php");                
+    } else {        
+        if(isset($_GET["changing_user_basket"])){
+            header(200);
+            add_position_basket($link, $_GET["id"], $_GET["sign"]);
+        };
+        include("pages/catalogue.php");
+    }    
 ?>

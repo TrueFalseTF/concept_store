@@ -12,9 +12,10 @@ shopping_basket = {};
 //очистка карзины
 function changing_user_basket(id, sign) {
 
-    if(sign !== "-" || /* если в обекте корзины есть эта позиция */) {
+    //if(sign !== "-" || /* если в обекте корзины есть эта позиция */) {
+        var URL = "index.php";
             
-        var get_request = URL + "changing_user_basket?id=" + escape(id) + "&sign=" + escape(sign);
+        var get_request = URL + "?changing_user_basket=changing&id=" + escape(id) + "&sign=" + escape(sign);
         
         var xhr = getXmlHttp();
         xhr.open("GET", get_request, true);
@@ -33,7 +34,7 @@ function changing_user_basket(id, sign) {
             }
             timerId = setTimeout(check_execution, 10);
         }, 10);
-    }
+    //}
 }
 
 

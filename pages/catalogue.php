@@ -4,9 +4,7 @@
     <meta charset="UTF-8">    
     <title>Магазин</title>    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/shopping_basket_styles.css">
-    <script src="./pages/js/catalogue.js"></script>
-    <script src="./pages/js/shopping_basket.js"></script>
+    <link rel="stylesheet" href="./pages/css/catalog_styles.css">
 </head>
 <body>    
     <!--product table-->    
@@ -35,9 +33,13 @@
 
     <!--банер корзины-->
     <div><!--outpute-->
-        <a href="./pages/shopping_basket.php">Корзина</a>
-        <!--сумма-->
+        <form method="post" action="index.php?open_basket" >
+            <input type="submit" value="Корзина">
+            <!--сумма-->
+        </form>
     <div>
     
 </body>
+<script src="./pages/js/catalogue.js"></script>
+<script src="./pages/js/shopping_basket.js"></script>
 </html>
