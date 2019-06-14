@@ -31,13 +31,17 @@ function CLIENT_clean_user_basket(pop, id_elements_cleaned) {
     for(i=1; i <= pop; i++){
         if(id_elements_cleaned) {
             var i_s = id_elements_cleaned+i;
-            document.getElementById(i_s).innerHTML = "";
+            if(null != document.getElementById(i_s)) {
+                document.getElementById(i_s).innerHTML = "";
+            }            
         } else {
             var i_s = ""+i;        
             document.getElementById(i_s).innerHTML = "0";
         }
-
     }
+
+    document.getElementById("in_total_basket").innerHTML = "0";
+    document.getElementById("in_total_price").innerHTML = "0";
 }
 
 function clean_user_basket() {

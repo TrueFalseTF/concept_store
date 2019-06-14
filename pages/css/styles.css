@@ -20,9 +20,9 @@ caption {
 }
 
 .basket {
-    position: fixed;
+    position: absolute;    
     top: 10px;
-    right: 10px;
+    left: 10px;
     width: min-content;
     border: 2px solid #009999;
     border-radius: 5px;

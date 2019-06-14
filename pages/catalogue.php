@@ -40,11 +40,12 @@
         
 
     <!--банер корзины-->
+
     <div class="basket">
         <a href="index.php?open_basket">Корзина</a><br>
         <?php $total_basket = 0;  $total_price = 0;
             foreach($position_catalogue as $row) {
-            
+                
             $total_basket += $row["amount_product"];
             $total_price += $row["price"] * $row["amount_product"];
         } ?>
@@ -53,6 +54,7 @@
         <input type="button" onclick="clean_user_basket(); 
             CLIENT_clean_user_basket(<?=array_pop($position_catalogue)['id']?>);" value="Очистить корзину">          
     <div>
+
     
 </body>
 <script src="./pages/js/engine.js"></script>

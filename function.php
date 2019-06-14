@@ -178,6 +178,40 @@
     };
 
     function order_sorting($link) {
-        
-    }
+
+        $relevant_position_order_basket = position_generator($link, 'users_basket');
+
+        $result_order_basket_d = mysqli_query($link, 
+            "DELETE FROM users_basket");    
+        if (!$result_order_basket_d)
+            die(mysqli_error($link));        
+
+        $result_order_d = mysqli_query($link, 
+            "DELETE FROM order_basket");    
+        if (!$result_order_d)
+            die(mysqli_error($link));
+
+
+        foreach($relevant_position_order_basket as $row) {
+
+            $row_id = '"'.$row['id'].'"';
+            $row_product = '"'.$row['product'].'"';
+            $row_price = '"'.$row['price'].'"';
+            $row_amount_product = '"'.$row['amount_product'].'"';
+
+            $result_update_catalog = mysqli_query($link, 
+                "INSERT INTO `order_basket` (`id`, `product`, `price`, `amount_product`) VALUES ("
+                .$row_id.", "
+                .$row_product.", "
+                .$row_price.", "
+                .$row_amount_product.")");    
+            if (!$result_update_catalog)
+                die(mysqli_error($link));
+        }
+
+        $result_update_catalog = mysqli_query($link, 
+            "UPDATE product_catalog SET amount_product = 0 WHERE amount_product > 0");    
+        if (!$result_update_catalog)
+            die(mysqli_error($link));
+    };
 ?>
