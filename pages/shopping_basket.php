@@ -41,8 +41,7 @@
         <span>Общая стоимость: </span><span id="in_total_price"><?=$total_price?></span> 
         <input type="button" onclick="clean_user_basket(); 
             CLIENT_clean_user_basket(<?=$pop?>, 'tr_');" value="Очистить корзину">
-        <input type="button" onclick="sending_emeil(); 
-            CLIENT_clean_user_basket(<?=$pop?>, 'tr_');" value="Заказать">       
+        <input type="button" onclick="sending_emeil();" value="Заказать">       
     <div>
 </body>
 <script src="./pages/js/engine.js"></script>

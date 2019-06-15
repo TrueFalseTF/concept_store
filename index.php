@@ -23,7 +23,9 @@
     if(isset($_GET["sending_emeil"])){
         header(200);
         $string_position_basket = serialize($position_basket);
-        mail("dimon_mcensk@mail.ru", "Форма заказа из магазина",  $string_position_basket, "From:dimon_mcensk@mail.ru");
+
+        include("mailer/smart.php"); 
+        //mail("dimon_mcensk@mail.ru", "Форма заказа из магазина",  $string_position_basket, "From:dimon_mcensk@mail.ru");
         order_sorting($link);
     }
     

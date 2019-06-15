@@ -179,12 +179,7 @@
 
     function order_sorting($link) {
 
-        $relevant_position_order_basket = position_generator($link, 'users_basket');
-
-        $result_order_basket_d = mysqli_query($link, 
-            "DELETE FROM users_basket");    
-        if (!$result_order_basket_d)
-            die(mysqli_error($link));        
+        $relevant_position_order_basket = position_generator($link, 'users_basket');       
 
         $result_order_d = mysqli_query($link, 
             "DELETE FROM order_basket");    
